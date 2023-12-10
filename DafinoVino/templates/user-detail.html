@@ -1,0 +1,59 @@
+{% include "navbar.html" %}
+
+{% block content %}
+
+    <div class="column is-4 is-offset-4">
+        <h3 class="title">Change User info</h3>
+        <div class="box bg-dark">
+            <form method="POST" action="{{ url_for('auth.process_edit_user', user_id=given_id) }}">
+                <div class="field">
+                    <div class="control">
+                        <label class="text-white w-100">
+                            E-mail:
+                            <input value="{{ user.email }}" class="input is-large w-100" type="email" name="email"
+                                   placeholder="Your Email" autofocus="" disabled>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="text-white w-100">
+                            Name:
+                            <input value="{{ user.name }}" class="input is-large w-100" type="text" name="name"
+                                   placeholder="Your name" autofocus="" disabled>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="text-white w-100">Change Role:</label>
+                        <select class="form-select w-100" aria-label="Default select example"
+                                name="selected_role">
+                            <option value="{{ user.role.name }}" selected>{{ user.role.name }}</option>
+                            {% if user.role.name=="ADMIN" %}
+                                <option value="USER">USER</option>
+                            {% endif %}
+                            {% if user.role.name=="USER" %}
+                                <option value="ADMIN">ADMIN</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+
+                <hr>
+                <br>
+                <div class="mt-10">
+                    <br>
+                    <button class="button is-block is-success is-large is-fullwidth">Save changes</button>
+                </div>
+                <br>
+                <div class="mt-10">
+                    <a href="{{ url_for('auth.users') }}" class="button is-block is-warning is-large is-fullwidth">Go
+                        Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

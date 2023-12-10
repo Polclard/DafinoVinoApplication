@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Winery</title>
+</head>
+<body>
+{% include "navbar.html" %}
+
+{% block content %}
+    <div class="column is-4 is-offset-4">
+        <h3 class="title">Add New Winery</h3>
+        <div class="box">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <form method="POST" action="/add_winery_post">
+                <div class="field">
+                    <div class="control">
+                        <label class="w-100">
+                            Winery Name:
+                            <input class="input is-large" type="text" name="winery_name" placeholder="Winery Name"
+                                   autofocus=""
+                                   required>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="w-100">
+                            Winery Description
+                            <textarea class="input is-large" rows="4" cols="50" type="Description" name="winery_description"
+                                      placeholder="Winery Description" autofocus="" required></textarea>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="w-100">
+                            Winery Name:
+                            <input class="input is-large" type="text" name="winery_rating" placeholder="Winery Rating"
+                                   autofocus=""
+                                   required>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="w-100">
+                            Winery Image Link:
+                            <input class="input is-large" type="text" name="winery_image_link" placeholder="Winery Link"
+                                   autofocus=""
+                                   required>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="w-100">
+                            Winery Longitude:
+                            <input class="input is-large" type="text" name="winery_longitude" placeholder="Winery Link"
+                                   autofocus=""
+                                   required>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="w-100">
+                            Winery Latitude:
+                            <input class="input is-large" type="text" name="winery_latitude" placeholder="Winery Link"
+                                   autofocus=""
+                                   required>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="button is-block is-success is-large is-fullwidth">Add New Winery</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

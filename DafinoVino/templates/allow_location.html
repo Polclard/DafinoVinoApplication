@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Allow Location</title>
+</head>
+<body>
+<form id="locationForm" method="post" action="/near_me" style="opacity: 0;">
+    <p id="location" style="opacity: 0">Loading...</p>
+    <input type="hidden" name="latitude" id="latitude" value="">
+    <input type="hidden" name="longitude" id="longitude" value="">
+</form>
+
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        // Update hidden input values
+        document.getElementById("latitude").value = latitude;
+        document.getElementById("longitude").value = longitude;
+
+        // Display the coordinates
+        document.getElementById("location").innerHTML = `Latitude: ${latitude}, Longitude: ${longitude}`;
+        document.getElementById("location").style.opacity = 1;
+
+        // Automatically submit the form
+        document.getElementById("locationForm").submit();
+    }
+
+    function showError(error) {
+        console.error('Error getting location:', error);
+    }
+
+    // Call the getLocation function when the page loads
+    window.onload = getLocation;
+</script>
+</body>
+</html>
